@@ -1,23 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base';
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <Container>
+                <Header />
+                <Content />
+                <Footer>
+                    <FooterTab>
+                        <Button>
+                            <Icon name="home" />
+                        </Button>
+                        <Button active>
+                            <Icon active name="camera" />
+                        </Button>
+                        <Button>
+                            <Icon name="person" />
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </Container>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 200
+    },
+    welcome_image: {
+        justifyContent: 'flex-start'
+    },
+    welcome_text: {
+        textAlign: 'center',
+        justifyContent: 'center',
+        fontSize: 32,
+        fontWeight: '500'
+    },
 });
