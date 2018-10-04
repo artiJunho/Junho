@@ -1,45 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
-import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
+import React                            from 'react';
+import { AppRegistry, StyleSheet  }     from 'react-native';
+import { createStackNavigator }         from 'react-navigation';
 
-import reducer from './reducer';
-import RepoList from './RepoList';
+import HomeScreen                       from './app/src/components/screens/Home';
+import GameScreen                       from './app/src/components/screens/Game';
+import ProfileScreen                    from './app/src/components/screens/Profile';
 
-const client = axios.create({
-    baseURL: 'https://api.github.com',
-    responseType: 'json'
+const JunhoApp = createStackNavigator({
+    Home: { screen: HomeScreen },
+    Game: { screen: GameScreen },
+    Profile: { screen: ProfileScreen }
+}, {
+    InitialRoute: 'Home'
 });
 
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
+AppRegistry.registerComponent('JunhoApp', () => JunhoApp);
 
 export default class App extends React.Component {
     render() {
         return (
-            // <Container>
-            //     <Header />
-            //     <Content />
-            //     <Footer>
-            //         <FooterTab>
-            //             <Button>
-            //                 <Icon name="home" />
-            //             </Button>
-            //             <Button active>
-            //                 <Icon active name="camera" />
-            //             </Button>
-            //             <Button>
-            //                 <Icon name="person" />
-            //             </Button>
-            //         </FooterTab>
-            //     </Footer>
-            // </Container>
-            <Provider store={store}>
-                <View style={styles.container}>
-                    <RepoList />
-                </View>
-            </Provider>
+            <JunhoApp />
         );
     }
 }
@@ -50,19 +30,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: 200
-    },
-    welcome_image: {
-        justifyContent: 'flex-start'
-    },
-    welcome_text: {
-        textAlign: 'center',
-        justifyContent: 'center',
-        fontSize: 32,
-        fontWeight: '500'
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        marginTop: 50
     }
 });
