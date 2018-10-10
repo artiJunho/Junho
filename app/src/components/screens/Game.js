@@ -16,6 +16,16 @@ export class Game extends Component {
         },
         headerRight: (
             <TouchableOpacity
+                onPress={() => {
+                    const game = { ...navigation.state.params.game }
+                    if (game.lineup.some(player => player.name === 'Me'))
+                        return
+                    game['lineup'] = [...game.lineup, { name: 'Me' }]
+                    navigation.setParams({
+                        game,
+                    })
+                }}
+                
                 style={{
                     height: 45,
                     width: 45,
@@ -27,8 +37,8 @@ export class Game extends Component {
                     shadowColor: 'black',
                     shadowOpacity: 0.5,
                     shadowOffset: {
-                    width: 2,
-                    height: 2,
+                        width: 2,
+                        height: 2,
                     }
                 }}
             >
