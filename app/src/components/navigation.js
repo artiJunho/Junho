@@ -25,7 +25,7 @@ export const JunhoStack = createStackNavigator({
 export const JunhoTabs = createBottomTabNavigator({
     TabA: {screen: TabA },
     TabB: {screen: TabB },
-    TabC: {screen: JunhoStack }
+    TabC: {screen: TabC }
 }, {
     order: ['TabA', 'TabB', 'TabC'],
     animationEnabled: true
