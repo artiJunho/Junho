@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import {
   StyleSheet,
   Text,
@@ -31,8 +33,14 @@ export const JunhoTabs = createBottomTabNavigator({
     animationEnabled: true
 });
 
-export const JunhoDrawer = createDrawerNavigator({
+export const JunhoApp = createDrawerNavigator({
     Stack: {screen: JunhoStack },
     Tabs: {screen: JunhoTabs},
     Plain: {screen: Plain}
 });
+
+const mapStateToProps = state => ({
+    navigation: state.navigation,
+})
+
+export default connect(mapStateToProps)(JunhoApp)
